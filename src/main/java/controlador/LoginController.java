@@ -1,4 +1,8 @@
-package com.example.CalidadSW;
+package controlador;
+
+import modelo.dao.DAOFactory;
+import modelo.entidad.Administrador;
+import modelo.entidad.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -18,7 +22,7 @@ public class LoginController extends HttpServlet {
         //
         DAOFactory fabrica = JPAFactory();
         Administrador administrador = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).autorizar(usuario,contrasena);
-        Usuario  user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(usuario,contrasena);
+        Usuario user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(usuario,contrasena);
         Cookie userCookie = new Cookie("usuario","");
         Cookie passCookie = new Cookie("password","");
         Cookie banderaCookie = new Cookie("recordar","");
