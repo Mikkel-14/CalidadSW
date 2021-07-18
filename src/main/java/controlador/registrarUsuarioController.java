@@ -28,7 +28,7 @@ public class registrarUsuarioController extends HttpServlet {
         String rol = req.getParameter("rol");
         DAOFactory fabrica = new JPAFactory();
         if (rol == "administrador"){
-            Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.Administrador).leer(codigoUnico)
+            Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.Administrador).leer(codigoUnico);
             if(administradorConsutado == null){
                 Administrador administrador = new Administrador(codigoUnico,nombre,apellido,password,email);
                 fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(administrador);
@@ -38,7 +38,7 @@ public class registrarUsuarioController extends HttpServlet {
             }
 
         }else if (rol == "usuario"){
-            Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.Usuario).leer(codigoUnico)
+            Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.Usuario).leer(codigoUnico);
             if (usuarioConsutado == null){
                 Usuario usuario = new Usuario(codigoUnico,nombre,apellido,password,email);
                 fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(usuario);
