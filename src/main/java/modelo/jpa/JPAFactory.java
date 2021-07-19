@@ -1,6 +1,7 @@
 package modelo.jpa;
 
 import modelo.dao.DAOFactory;
+import modelo.dao.DenunciaDAO;
 import modelo.dao.UsuarioDAO;
 
 public class JPAFactory extends DAOFactory {
@@ -19,4 +20,12 @@ public class JPAFactory extends DAOFactory {
             return null;
         }
     }
+
+    @Override
+    public DenunciaDAO crearDenuciaDAO() {
+        return new JPADenuciasDAO();
+    }
+
+
+
 }
