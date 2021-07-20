@@ -1,9 +1,11 @@
 package modelo.entidad;
 import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
 
 
-public class Usuario {
+public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "codUnico")

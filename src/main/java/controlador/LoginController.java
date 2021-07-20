@@ -3,6 +3,7 @@ package controlador;
 import modelo.dao.DAOFactory;
 import modelo.entidad.Administrador;
 import modelo.entidad.Usuario;
+import modelo.jpa.JPAFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -20,7 +21,7 @@ public class LoginController extends HttpServlet {
         String email = req.getParameter("email");
         String contrasena = req.getParameter("password");
         //
-        DAOFactory fabrica = JPAFactory();
+        DAOFactory fabrica = new JPAFactory();
         Administrador administrador = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).autorizar(email,contrasena);
         Usuario user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(email,contrasena);
         Cookie emailCookie = new Cookie("email","");
