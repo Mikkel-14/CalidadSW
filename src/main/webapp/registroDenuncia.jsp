@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
 <html>
@@ -25,25 +26,30 @@
         <label for="tipoDenuncia">Tipo de denuncia</label>
     </div>
 
+	<div class="form-floating mb-3">
+		<input type="date" class="form-control" id="fechaRegistro"/>
+		<label class="form-label" for="fechaRegistro">Fecha de ingreso de denuncia </label>
+    </div>
+
 
 	<div class="form-group">
-		<label for="exampleFormControlTextarea1">Descripción de la denuncia</label>
-		<textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+		<label for="descripcion">DescripciÃ³n de la denuncia</label>
+		<textarea class="form-control" id="descripcion" rows="5"></textarea>
 	</div>
 
 
-    <div class="form-floating mt-4 mb-3">
+    <div class="form-floating mt-3 mb-3">
         <select class="form-select" id="facultad">
             <option>Facultad de Civil</option>
             <option>Facultad de Ciencias</option>
 			<option>Facultad de Ciencias Administrativas</option>
-			<option>Facultad de Eléctrica</option>
-			<option>Facultad de Geología & Petróleos</option>
-			<option>Facultad de Mecánica</option>
-			<option>Facultad de Química & Agroindustrial</option>
+			<option>Facultad de ElÃ©ctrica</option>
+			<option>Facultad de GeologÃ­a & PetrÃ³leos</option>
+			<option>Facultad de MecÃ¡nica</option>
+			<option>Facultad de QuÃ­mica & Agroindustrial</option>
 			<option>Facultad de sistemas</option>
 			<option>ESFOT</option>
-			<option>Formación básica</option>
+			<option>FormaciÃ³n bÃ¡sica</option>
         </select>
         <label for="facultad">Seleccione su facultad</label>
     </div>
