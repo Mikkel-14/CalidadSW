@@ -1,9 +1,10 @@
 package modelo.entidad;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Denuncia {
+public class Denuncia implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
