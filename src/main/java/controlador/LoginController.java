@@ -3,6 +3,7 @@ package controlador;
 import modelo.dao.DAOFactory;
 import modelo.entidad.Administrador;
 import modelo.entidad.Usuario;
+import modelo.jpa.JPAFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -17,57 +18,57 @@ public class LoginController extends HttpServlet {
     }
     private void procesarSolicitud(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String recordar= req.getParameter("recordarme");
-        String usuario = req.getParameter("usuario");
+        String email = req.getParameter("email");
         String contrasena = req.getParameter("password");
         //
-        DAOFactory fabrica = JPAFactory();
-        Administrador administrador = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).autorizar(usuario,contrasena);
-        Usuario user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(usuario,contrasena);
-        Cookie userCookie = new Cookie("usuario","");
+        DAOFactory fabrica = new JPAFactory();
+        Administrador administrador = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).autorizar(email,contrasena);
+        Usuario user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(email,contrasena);
+        Cookie emailCookie = new Cookie("email","");
         Cookie passCookie = new Cookie("password","");
         Cookie banderaCookie = new Cookie("recordar","");
 
         if(recordar != null && recordar.equals("on")){
-            userCookie.setValue(usuario);
+            emailCookie.setValue(email);
             passCookie.setValue(contrasena);
             banderaCookie.setValue(recordar);
         }else{
-            userCookie.setMaxAge(0);
+            emailCookie.setMaxAge(0);
             passCookie.setMaxAge(0);
             banderaCookie.setMaxAge(0);
             resp.addCookie(passCookie);
-            resp.addCookie(userCookie);
+            resp.addCookie(emailCookie);
             resp.addCookie(banderaCookie);
         }
 
         if(administrador != null){
             //Abriendo la sesión
             HttpSession sesion = req.getSession();
-            sesion.setAttribute("usuario",usuario);
+            sesion.setAttribute("usuario",email);
             String tipo = "administrador";
             sesion.setAttribute("tipo",tipo);
             //Redireccionando a la jsp
             resp.addCookie(passCookie);
-            resp.addCookie(userCookie);
+            resp.addCookie(emailCookie);
             resp.addCookie(banderaCookie);
             getServletContext().getRequestDispatcher("/ModuloAdministrador.jsp").forward(req,resp);
         }else if(user != null){
             //Abriendo la sesión
             HttpSession sesion = req.getSession();
-            sesion.setAttribute("usuario",usuario);
+            sesion.setAttribute("usuario",email);
             String tipo = "usuario";
             sesion.setAttribute("tipo",tipo);
             //Redireccionando a la jsp
             resp.addCookie(passCookie);
-            resp.addCookie(userCookie);
+            resp.addCookie(emailCookie);
             resp.addCookie(banderaCookie);
             getServletContext().getRequestDispatcher("/ModuloUsuario.jsp").forward(req,resp);
         }else{
-            userCookie.setMaxAge(0);
+            emailCookie.setMaxAge(0);
             passCookie.setMaxAge(0);
             banderaCookie.setMaxAge(0);
             resp.addCookie(passCookie);
-            resp.addCookie(userCookie);
+            resp.addCookie(emailCookie);
             resp.addCookie(banderaCookie);
             resp.sendRedirect("index.jsp");
         }
