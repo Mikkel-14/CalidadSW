@@ -2,6 +2,7 @@ package modelo.jpa;
 
 import modelo.dao.UsuarioDAO;
 import modelo.entidad.Usuario;
+import modelo.security.HashPassword;
 
 import javax.persistence.Query;
 import java.util.List;
@@ -15,7 +16,9 @@ public class JPAUsuario extends JPAGenericDAO<Usuario, String> implements Usuari
     public Usuario autorizar(String codUnico, String contraseña ) {
         Usuario usuarioEntidad = this.leer(codUnico);
         if (usuarioEntidad != null) {
-            if (usuarioEntidad.getContrasenia().equals(contraseña))
+            HashPassword hash = new HashPassword();
+            String saltedPassword = hash.valorHash(contraseña+usuarioEntidad.getSal());
+            if (usuarioEntidad.getContrasenia().equals(saltedPassword))
                 return usuarioEntidad;
         }
         return null;
