@@ -2,6 +2,7 @@ package modelo.entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @NamedQuery(name = "listarDenucias",query = "SELECT e FROM Denuncia e")
@@ -19,12 +20,24 @@ public class Denuncia implements Serializable {
     @Column(name = "estado")
     private String estado;
 
+    @Column(name = "tipo")
+    private String tipo;
+
+    @Column(name = "fecha")
+    private Date fecha;
+
+    @Column(name = "facultad")
+    private String facultad;
+
 
     public Denuncia(){
 
     }
-    public Denuncia(String denuncia){
-        this.descripcion = denuncia;
+    public Denuncia(String descripcion,String tipo,Date fecha,String facultad){
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.facultad = facultad;
         this.estado = "Registrada";
     }
 
@@ -56,12 +69,39 @@ public class Denuncia implements Serializable {
         this.estado = estado;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFacultad() {
+        return facultad;
+    }
+
+    public void setFacultad(String facultad) {
+        this.facultad = facultad;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + (((descripcion) == null) ? 0 : descripcion.hashCode());
         result = prime * result + (((estado) == null) ? 0 : estado.hashCode());
+        result = prime * result + (((tipo) == null) ? 0 : tipo.hashCode());
+        result = prime * result + (((fecha) == null) ? 0 : fecha.hashCode());
+        result = prime * result + (((facultad) == null) ? 0 : facultad.hashCode());
         return result;
     }
 
@@ -76,6 +116,12 @@ public class Denuncia implements Serializable {
 
     @Override
     public String toString() {
-        return "Denuncia [id= " + this.id + ", denuncia=" + this.descripcion +", estado=" + this.estado +  "]";
+        return "Denuncia [id= " + this.id +
+                ", denuncia=" + this.descripcion +
+                ", estado=" + this.estado +
+                ", tipo=" + this.tipo +
+                ", fecha=" + this.fecha +
+                ", facultad=" + this.facultad +
+                "]";
     }
 }
