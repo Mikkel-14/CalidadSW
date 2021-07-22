@@ -4,6 +4,7 @@ import modelo.dao.DAOFactory;
 import modelo.entidad.Administrador;
 import modelo.entidad.Usuario;
 import modelo.jpa.JPAFactory;
+import modelo.security.HashPassword;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +31,11 @@ public class registrarUsuarioController extends HttpServlet {
         if (rol == "administrador"){
             Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).leer(codigoUnico);
             if(administradorConsutado == null){
-                Administrador administrador = new Administrador(codigoUnico,nombre,apellido,password,email);
+                HashPassword hash = new HashPassword();
+                String salt = HashPassword.getSalt();
+                String saltedPasswd = hash.valorHash(password+salt);
+                Administrador administrador = new Administrador(codigoUnico,nombre,apellido,saltedPasswd,email);
+                administrador.setSal(salt);
                 fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(administrador);
                 req.setAttribute("mensajeExito", "Se ha registrado el Administrador");//mensaje
             }else{
@@ -40,7 +45,11 @@ public class registrarUsuarioController extends HttpServlet {
         }else if (rol == "usuario"){
             Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).leer(codigoUnico);
             if (usuarioConsutado == null){
-                Usuario usuario = new Usuario(codigoUnico,nombre,apellido,password,email);
+                HashPassword hash = new HashPassword();
+                String salt = HashPassword.getSalt();
+                String saltedPasswd = hash.valorHash(password+salt);
+                Usuario usuario = new Usuario(codigoUnico,nombre,apellido,saltedPasswd,email);
+                usuario.setSal(salt);
                 fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(usuario);
                 req.setAttribute("mensajeExito", "Se ha registrado el Usuario");//mensaje
             }else{
