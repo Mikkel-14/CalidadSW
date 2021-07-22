@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/estiloRegistro.css"/>
 </head>
 <body class="container d-flex flex-column justify-content-center">
-<form method="post" class="container col-lg-6 col-xl-5 col-md-11">
+<form method="post" class="container col-lg-6 col-xl-5 col-md-11" action="loginController">
     <h1 class="mt-2 mb-4">Inicio de Sesión</h1>
     <div class="form-floating mb-3">
         <input type="number" class="form-control" id="number" placeholder="201720866" name="codigoUnico"/>
@@ -22,7 +22,7 @@
         <label class="form-label" for="password">Contraseña</label>
     </div>
     <div class="form-check form-switch mb-3">
-        <input class="form-check-input" type="checkbox" id="recordar" name="recordar">
+        <input class="form-check-input" type="checkbox" id="recordar" name="recordarme">
         <label class="form-check-label" for="recordar">Recuérdame</label>
     </div>
     <div class="col-12">
