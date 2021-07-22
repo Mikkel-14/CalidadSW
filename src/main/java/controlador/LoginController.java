@@ -6,9 +6,10 @@ import modelo.entidad.Usuario;
 import modelo.jpa.JPAFactory;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-
+@WebServlet("/actualizarEstudianteController")
 public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         procesarSolicitud(request,response);

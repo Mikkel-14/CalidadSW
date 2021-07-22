@@ -7,11 +7,12 @@ import modelo.jpa.JPAFactory;
 import modelo.security.HashPassword;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@WebServlet("/registrarUsuarioController")
 public class registrarUsuarioController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,6 +58,6 @@ public class registrarUsuarioController extends HttpServlet {
             }
 
         }
-        getServletContext().getRequestDispatcher("/registrarUsuario.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/registroUsuario.jsp").forward(req, resp);
     }
 }
