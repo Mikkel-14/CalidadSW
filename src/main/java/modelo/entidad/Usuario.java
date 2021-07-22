@@ -23,6 +23,10 @@ public class Usuario implements Serializable {
 
     @Column(name = "correoElectronico")
     private String correoElectronico;
+
+    @Column(name = "salt")
+    private String sal;
+
     public Usuario(){}
 
     public Usuario(String codUnico, String nombre, String apellido, String contrasenia, String correoElectronico) {
@@ -75,6 +79,14 @@ public class Usuario implements Serializable {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
+    }
+
+    public String getSal() {
+        return sal;
+    }
+
+    public void setSal(String sal) {
+        this.sal = sal;
     }
 
     @Override

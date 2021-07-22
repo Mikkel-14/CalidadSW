@@ -25,6 +25,9 @@ public class Administrador implements Serializable {
     @Column(name = "correoElectronico")
     private String correoElectronico;
 
+    @Column(name = "salt")
+    private String sal;
+
     public Administrador(){}
 
     public Administrador(String codUnico, String nombre, String apellido, String contrasenia, String correoElectronico) {
@@ -78,6 +81,15 @@ public class Administrador implements Serializable {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
+
+    public String getSal() {
+        return sal;
+    }
+
+    public void setSal(String sal) {
+        this.sal = sal;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
