@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="mensajeError" scope="request" value="${mensajeError}"/>
+<c:set var="mensajeExito" scope="request" value="${mensajeExito}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +45,10 @@
     </div>
     <div class="col-12">
         <button type="submit" class="btn btn-primary">Registrarse</button>
+        <div class="col-7 px-0 my-auto mx-0">
+            <div class="text-danger">${mensajeError}</div>
+            <div class="text-success">${mensajeExito}</div>
+        </div>
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
