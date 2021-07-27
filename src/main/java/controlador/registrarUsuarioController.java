@@ -29,7 +29,7 @@ public class registrarUsuarioController extends HttpServlet {
         String password = req.getParameter("password");
         String rol = req.getParameter("rol");
         DAOFactory fabrica = new JPAFactory();
-        if (rol == "administrador"){
+        if (rol.equals("administrador")){
             Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).leer(codigoUnico);
             if(administradorConsutado == null){
                 HashPassword hash = new HashPassword();
@@ -43,7 +43,7 @@ public class registrarUsuarioController extends HttpServlet {
                 req.setAttribute("mensajeError", "Administrador ya registrado");//mensaje
             }
 
-        }else if (rol == "usuario"){
+        }else if (rol.equals("usuario")){
             Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).leer(codigoUnico);
             if (usuarioConsutado == null){
                 HashPassword hash = new HashPassword();
