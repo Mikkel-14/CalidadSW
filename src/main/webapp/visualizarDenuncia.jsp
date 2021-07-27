@@ -29,9 +29,9 @@
 		<tbody>
 				<c:choose>
 					<c:when test="${listaDenuncia==null}">
-		</tbody>
-	</table>
-	<div class="row mx-auto mb-4">No hay elementos para mostrar.</div>
+				</tbody>
+			</table>
+			<div class="row mx-auto mb-4">No hay elementos para mostrar.</div>
 	</c:when>
 	<c:when test="${listaDenuncia!=null}">
 		<c:forEach var="d" items="${listaDenuncia}">

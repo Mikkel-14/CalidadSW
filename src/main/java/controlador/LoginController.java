@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
             resp.addCookie(passCookie);
             resp.addCookie(codigoUnicoCookie);
             resp.addCookie(banderaCookie);
-            getServletContext().getRequestDispatcher("/visualizarDenuncia.jsp").forward(req,resp);
+            getServletContext().getRequestDispatcher("/ControladorListarDenuncias").forward(req,resp);
         }else if(user != null){
             //Abriendo la sesión
             HttpSession sesion = req.getSession();
