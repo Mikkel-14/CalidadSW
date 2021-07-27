@@ -18,6 +18,7 @@
           <element id="library" level="project" name="Maven: org.eclipse.persistence:jakarta.persistence:2.2.3" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:commonj.sdo:2.1.1" />
           <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk15on:1.68" />
+          <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:9.3.1.jre15-preview" />
         </element>
       </element>
       <element id="directory" name="META-INF">
