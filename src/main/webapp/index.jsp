@@ -25,8 +25,11 @@
         <input class="form-check-input" type="checkbox" id="recordar" name="recordarme">
         <label class="form-check-label" for="recordar">Recuérdame</label>
     </div>
-    <div class="col-12">
+    <div class="col-12 mb-4">
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </div>
+    <div>
+        Eres nuevo en Poli-Colaboration? <a href="registroUsuario.jsp">Regístrate</a>
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
