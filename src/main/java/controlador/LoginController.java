@@ -52,7 +52,7 @@ public class LoginController extends HttpServlet {
             resp.addCookie(passCookie);
             resp.addCookie(codigoUnicoCookie);
             resp.addCookie(banderaCookie);
-            getServletContext().getRequestDispatcher("/ModuloAdministrador.jsp").forward(req,resp);
+            getServletContext().getRequestDispatcher("/visualizarDenuncia.jsp").forward(req,resp);
         }else if(user != null){
             //Abriendo la sesión
             HttpSession sesion = req.getSession();
@@ -63,7 +63,7 @@ public class LoginController extends HttpServlet {
             resp.addCookie(passCookie);
             resp.addCookie(codigoUnicoCookie);
             resp.addCookie(banderaCookie);
-            getServletContext().getRequestDispatcher("/ModuloUsuario.jsp").forward(req,resp);
+            getServletContext().getRequestDispatcher("/registroDenuncia.jsp").forward(req,resp);
         }else{
             req.setAttribute("err","Codigo único o contraseña inválidos");
             codigoUnicoCookie.setMaxAge(0);

@@ -27,13 +27,12 @@ public class RegistroDenunciaController extends HttpServlet {
         String tipoDenuncia = req.getParameter("tipoDenuncia");
         String fecha = req.getParameter("fechaRegistro");
         String descripcion = req.getParameter("descripcion");
-        String facultad = req.getParameter("facultad");
 
         DAOFactory fabrica = new JPAFactory();
-        if(tipoDenuncia != "" && fecha != "" && descripcion != "" && facultad != "" ){
+        if(tipoDenuncia != "" && fecha != "" && descripcion != ""){
             Denuncia denuncia = null;
             try {
-                denuncia = new Denuncia(descripcion,tipoDenuncia,new SimpleDateFormat("dd/MM/yyyy").parse(fecha),facultad);
+                denuncia = new Denuncia(descripcion,tipoDenuncia,new SimpleDateFormat("dd/MM/yyyy").parse(fecha));
                 fabrica.crearDenuciaDAO().crear(denuncia);
                 req.setAttribute("mensajeExito", "Se ha registrado la denuncia");//mensaje
             } catch (ParseException e) {

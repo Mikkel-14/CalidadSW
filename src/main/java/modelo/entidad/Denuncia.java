@@ -26,18 +26,15 @@ public class Denuncia implements Serializable {
     @Column(name = "fecha")
     private Date fecha;
 
-    @Column(name = "facultad")
-    private String facultad;
 
 
     public Denuncia(){
 
     }
-    public Denuncia(String descripcion,String tipo,Date fecha,String facultad){
+    public Denuncia(String descripcion,String tipo,Date fecha){
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.fecha = fecha;
-        this.facultad = facultad;
         this.estado = "Registrada";
     }
 
@@ -85,13 +82,6 @@ public class Denuncia implements Serializable {
         this.fecha = fecha;
     }
 
-    public String getFacultad() {
-        return facultad;
-    }
-
-    public void setFacultad(String facultad) {
-        this.facultad = facultad;
-    }
 
     @Override
     public int hashCode() {
@@ -101,7 +91,6 @@ public class Denuncia implements Serializable {
         result = prime * result + (((estado) == null) ? 0 : estado.hashCode());
         result = prime * result + (((tipo) == null) ? 0 : tipo.hashCode());
         result = prime * result + (((fecha) == null) ? 0 : fecha.hashCode());
-        result = prime * result + (((facultad) == null) ? 0 : facultad.hashCode());
         return result;
     }
 
@@ -121,7 +110,6 @@ public class Denuncia implements Serializable {
                 ", estado=" + this.estado +
                 ", tipo=" + this.tipo +
                 ", fecha=" + this.fecha +
-                ", facultad=" + this.facultad +
                 "]";
     }
 }

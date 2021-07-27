@@ -38,22 +38,6 @@
 	</div>
 
 
-    <div class="form-floating mt-3 mb-3">
-        <select class="form-select" id="facultad">
-            <option>Facultad de Civil</option>
-            <option>Facultad de Ciencias</option>
-			<option>Facultad de Ciencias Administrativas</option>
-			<option>Facultad de Eléctrica</option>
-			<option>Facultad de Geología & Petróleos</option>
-			<option>Facultad de Mecánica</option>
-			<option>Facultad de Química & Agroindustrial</option>
-			<option>Facultad de sistemas</option>
-			<option>ESFOT</option>
-			<option>Formación básica</option>
-        </select>
-        <label for="facultad">Seleccione su facultad</label>
-    </div>
-
     <div class="col-12 mt-4">
         <button type="submit" class="btn btn-primary">Registrar Denuncia</button>
     </div>
