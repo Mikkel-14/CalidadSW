@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,15 +18,15 @@
     <h1 class="mt-2 mb-4">Inicio de Sesión</h1>
     <div class="col-12 mb-2 text-danger">${err}</div>
     <div class="form-floating mb-3">
-        <input type="number" class="form-control" id="number" placeholder="201720866" name="codigoUnico"/>
+        <input type="number" class="form-control" id="number" value="<c:out value="${cookie['codigoUnico'].getValue()}"/>" placeholder="201720866" name="codigoUnico"/>
         <label class="form-label" for="number">Código Único</label>
     </div>
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="password" placeholder="SecurePassword" name="password"/>
+        <input type="password" class="form-control" id="password" value="<c:out value="${cookie['password'].getValue()}"/>"  placeholder="SecurePassword" name="password"/>
         <label class="form-label" for="password">Contraseña</label>
     </div>
     <div class="form-check form-switch mb-3">
-        <input class="form-check-input" type="checkbox" id="recordar" name="recordarme">
+        <input class="form-check-input" type="checkbox" id="recordar" name="recordarme" <c:if test="${cookie['recordar'].getValue() == 'on'}">checked="checked"</c:if>>
         <label class="form-check-label" for="recordar">Recuérdame</label>
     </div>
     <div class="col-12 mb-4">

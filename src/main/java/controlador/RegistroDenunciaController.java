@@ -41,6 +41,7 @@ public class RegistroDenunciaController extends HttpServlet {
             }
         }else{
             req.setAttribute("descripcion", descripcion);
+            req.setAttribute("fecha", fecha);
             req.setAttribute("mensajeError", "Se debe llenar todos los campos");//mensaje
         }
         getServletContext().getRequestDispatcher("/registroDenuncia.jsp").forward(req, resp);
