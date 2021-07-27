@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/estiloRegistro.css"/>
 </head>
 <body class="container d-flex flex-column justify-content-center">
-<form method="post" class="container col-lg-7 col-md-11">
+<form method="post" class="container col-lg-7 col-md-11" action="registrarUsuarioController">
     <h1 class="mt-2 mb-4">Registro de usuario</h1>
     <div class="form-floating mb-3">
         <input type="number" class="form-control" id="codigoUnico" placeholder="202114788" name = "codigoUnico"/>
