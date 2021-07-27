@@ -43,7 +43,6 @@ public class registrarUsuarioController extends HttpServlet {
                     Administrador administrador = new Administrador(codigoUnico, nombre, apellido, saltedPasswd, email);
                     administrador.setSal(salt);
                     fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(administrador);
-                    req.setAttribute("mensajeExito", "Se ha registrado el Administrador");//mensaje
                     getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje
@@ -60,7 +59,6 @@ public class registrarUsuarioController extends HttpServlet {
                     Usuario usuario = new Usuario(codigoUnico, nombre, apellido, saltedPasswd, email);
                     usuario.setSal(salt);
                     fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(usuario);
-
                     getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje

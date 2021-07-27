@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="mensajeError" scope="request" value="${mensajeError}"/>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@
     </div>
     <div class="form-floating mb-3">
         <input type="number" class="form-control" id="codigoUnico" placeholder="202114788" value="${codigoUnico}"  name = "codigoUnico"/>
-        <label class="form-label" for="codigoUnico">CÃ³digo Ãšnico</label>
+        <label class="form-label" for="codigoUnico">Código Único</label>
     </div>
     <div class="form-floating mb-3">
         <input type="text" class="form-control" id="nombre" placeholder="Anita" value="${nombre}" name="nombre"/>
@@ -36,7 +36,7 @@
     </div>
     <div class="form-floating mb-3">
         <input type="password" class="form-control" id="password" placeholder="SecurePassword" value="${password}" name="password"/>
-        <label class="form-label" for="password">ContraseÃ±a</label>
+        <label class="form-label" for="password">Contraseña</label>
     </div>
     <div class="form-floating mb-3">
         <select class="form-select" id="rol" name="rol" >
