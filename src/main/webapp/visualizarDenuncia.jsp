@@ -22,22 +22,31 @@
 	<table class="table table-striped ">
 		<thead class="text-light bg-primary">
 			<tr>
-				<th>Tipo denuncia</th>
+				<th>ID</th>
+				<th>Tipo</th>
+				<th>Estado</th>
 				<th>Fecha</th>
 			</tr>
 		</thead>
 		<tbody>
 				<c:choose>
-					<c:when test="${listaDenuncia==null}">
+					<c:when test="${listaDenuncias==null}">
 				</tbody>
 			</table>
 			<div class="row mx-auto mb-4">No hay elementos para mostrar.</div>
 	</c:when>
-	<c:when test="${listaDenuncia!=null}">
-		<c:forEach var="d" items="${listaDenuncia}">
+	<c:when test="${listaDenuncias!=null}">
+		<c:forEach var="d" items="${listaDenuncias}">
 			<tr>
+				<td>${d.id}</td>
 				<td>${d.tipo}</td>
-				<td>${d.fecha}</td>
+				<td>${d.estado}</td>
+				<c:set var="diaSemana">${d.fecha.toString().split(" ")[0]}</c:set>
+				<c:set var="mes">${d.fecha.toString().split(" ")[1]}</c:set>
+				<c:set var="numeroDia">${d.fecha.toString().split(" ")[2]}</c:set>
+				<c:set var="anio">${d.fecha.toString().split(" ")[5]}</c:set>
+				<c:set var="dia">${diaSemana.concat(" ").concat(numeroDia).concat(" ").concat(mes).concat(" ").concat(anio)}</c:set>
+				<td>${dia}</td>
 			</tr>
 		</c:forEach>
 		</tbody>
