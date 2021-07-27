@@ -21,7 +21,6 @@ public class LoginController extends HttpServlet {
         String recordar= req.getParameter("recordarme");
         String codUnico = req.getParameter("codigoUnico");
         String contrasena = req.getParameter("password");
-        //
         DAOFactory fabrica = new JPAFactory();
         Administrador administrador = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).autorizar(codUnico,contrasena);
         Usuario user= (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).autorizar(codUnico,contrasena);
