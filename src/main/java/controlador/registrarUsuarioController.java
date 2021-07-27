@@ -30,12 +30,13 @@ public class registrarUsuarioController extends HttpServlet {
         String rol = req.getParameter("rol");
         DAOFactory fabrica = new JPAFactory();
         if(Validaciones.validadorCodUnico(codigoUnico)
-                & Validaciones.validadorCorreo(email)
-                & Validaciones.validadorStrings(nombre)
-                & Validaciones.validadorStrings(apellido)) {
+                && Validaciones.validadorCorreo(email)
+                && Validaciones.validadorStrings(nombre)
+                && Validaciones.validadorStrings(apellido)) {
             if (rol.equals("administrador")) {
                 Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).leer(codigoUnico);
-                if (administradorConsutado == null) {
+                Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).leer(codigoUnico);
+                if (administradorConsutado == null && usuarioConsutado == null ) {
                     HashPassword hash = new HashPassword();
                     String salt = HashPassword.getSalt();
                     String saltedPasswd = hash.valorHash(password + salt);
@@ -45,13 +46,14 @@ public class registrarUsuarioController extends HttpServlet {
                     req.setAttribute("mensajeExito", "Se ha registrado el Administrador");//mensaje
                     getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
-
-                    //getServletContext().getRequestDispatcher("/registroUsuario.jsp").forward(req, resp);
+                    req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje
+                    redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
                 }
 
             } else if (rol.equals("usuario")) {
+                Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).leer(codigoUnico);
                 Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).leer(codigoUnico);
-                if (usuarioConsutado == null) {
+                if (administradorConsutado == null && usuarioConsutado == null) {
                     HashPassword hash = new HashPassword();
                     String salt = HashPassword.getSalt();
                     String saltedPasswd = hash.valorHash(password + salt);
@@ -59,23 +61,27 @@ public class registrarUsuarioController extends HttpServlet {
                     usuario.setSal(salt);
                     fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(usuario);
 
-                    //getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+                    getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
                     req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje
-                    getServletContext().getRequestDispatcher("/registroUsuario.jsp").forward(req, resp);
+                    redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
                 }
             }
 
         }else{
-            req.setAttribute("codigoUnico",codigoUnico);
-            req.setAttribute("nombre",nombre);
-            req.setAttribute("apellido",apellido);
-            req.setAttribute("email",email);
-            req.setAttribute("password",password);
-            req.setAttribute("rol",rol);
             req.setAttribute("mensajeError", "Datos no válidos");//mensaje
-            getServletContext().getRequestDispatcher("/registroUsuario.jsp").forward(req, resp);
+            redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
         }
 
+    }
+
+    private void redireccionFallo(HttpServletRequest req, HttpServletResponse resp, String codigoUnico, String nombre, String apellido, String email, String password, String rol) throws ServletException, IOException {
+        req.setAttribute("codigoUnico", codigoUnico);
+        req.setAttribute("nombre", nombre);
+        req.setAttribute("apellido", apellido);
+        req.setAttribute("email", email);
+        req.setAttribute("password", password);
+        req.setAttribute("rol", rol);
+        getServletContext().getRequestDispatcher("/registroUsuario.jsp").forward(req, resp);
     }
 }
