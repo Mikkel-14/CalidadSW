@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <body class="container d-flex flex-column justify-content-center">
 <form method="post" class="container col-lg-6 col-xl-5 col-md-11" action="loginController">
     <h1 class="mt-2 mb-4">Inicio de Sesión</h1>
+    <div class="col-12 mb-2 text-danger">${err}</div>
     <div class="form-floating mb-3">
         <input type="number" class="form-control" id="number" placeholder="201720866" name="codigoUnico"/>
         <label class="form-label" for="number">Código Único</label>

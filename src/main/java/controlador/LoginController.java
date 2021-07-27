@@ -65,13 +65,14 @@ public class LoginController extends HttpServlet {
             resp.addCookie(banderaCookie);
             getServletContext().getRequestDispatcher("/ModuloUsuario.jsp").forward(req,resp);
         }else{
+            req.setAttribute("err","Codigo único o contraseña inválidos");
             codigoUnicoCookie.setMaxAge(0);
             passCookie.setMaxAge(0);
             banderaCookie.setMaxAge(0);
             resp.addCookie(passCookie);
             resp.addCookie(codigoUnicoCookie);
             resp.addCookie(banderaCookie);
-            resp.sendRedirect("index.jsp");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
         }
 
 

@@ -12,7 +12,7 @@ public abstract class JPAGenericDAO <T,ID> implements GenericDAO<T, ID> {
     private Class<T> persistenceClass;
 
     public JPAGenericDAO(Class<T> persistenceCls) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("proyectoCalidadSW");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("calidadDeSoftware");
         em = emf.createEntityManager();
         this.persistenceClass=persistenceCls;
     }
