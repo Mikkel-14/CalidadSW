@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="css/estiloRegistro.css"/>
 </head>
 <body class="container d-flex flex-column justify-content-center">
+
 <form method="post" class="container col-lg-6 col-xl-5 col-md-11" action="loginController">
+    <div class="col-12 mb-2 text-success">${ok}</div>
     <h1 class="mt-2 mb-4">Inicio de Sesión</h1>
     <div class="col-12 mb-2 text-danger">${err}</div>
     <div class="form-floating mb-3">
