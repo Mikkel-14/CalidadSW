@@ -25,7 +25,7 @@ public class ControladorListarDenuncias extends HttpServlet {
         DAOFactory fabrica = new JPAFactory();
 
         List<Denuncia> denuncias = fabrica.crearDenuciaDAO().listar();
-        System.out.println(denuncias.get(0).getFecha().toString());
+
         req.setAttribute("listaDenuncias",denuncias);
         getServletContext().getRequestDispatcher("/visualizarDenuncia.jsp").forward(req,resp);
     }

@@ -29,10 +29,15 @@ public class registrarUsuarioController extends HttpServlet {
         String password = req.getParameter("password");
         String rol = req.getParameter("rol");
         DAOFactory fabrica = new JPAFactory();
+
+        validar(req);
+
+
         if(Validaciones.validadorCodUnico(codigoUnico)
                 && Validaciones.validadorCorreo(email)
                 && Validaciones.validadorStrings(nombre)
-                && Validaciones.validadorStrings(apellido)) {
+                && Validaciones.validadorStrings(apellido)
+                &&password.length()>=4) {
             if (rol.equals("administrador")) {
                 Administrador administradorConsutado = (Administrador) fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).leer(codigoUnico);
                 Usuario usuarioConsutado = (Usuario) fabrica.crearUsuarioDAO(JPAFactory.USUARIO).leer(codigoUnico);
@@ -43,9 +48,11 @@ public class registrarUsuarioController extends HttpServlet {
                     Administrador administrador = new Administrador(codigoUnico, nombre, apellido, saltedPasswd, email);
                     administrador.setSal(salt);
                     fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(administrador);
+                    req.setAttribute("ok", "Administrador registrado con éxito");
                     getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
-                    req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje
+
+                    req.setAttribute("mensajeError", "Código Único ya registrado");//mensaje
                     redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
                 }
 
@@ -59,18 +66,49 @@ public class registrarUsuarioController extends HttpServlet {
                     Usuario usuario = new Usuario(codigoUnico, nombre, apellido, saltedPasswd, email);
                     usuario.setSal(salt);
                     fabrica.crearUsuarioDAO(JPAFactory.ADMINISTRADOR).crear(usuario);
+                    req.setAttribute("ok", "Usuario registrado con éxito");
                     getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
                 } else {
-                    req.setAttribute("mensajeError", "Usuario ya registrado");//mensaje
+
+                    req.setAttribute("mensajeError", "Código Único ya registrado");//mensaje
                     redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
                 }
             }
 
         }else{
-            req.setAttribute("mensajeError", "Datos no válidos");//mensaje
+
             redireccionFallo(req, resp, codigoUnico, nombre, apellido, email, password, rol);
         }
 
+    }
+
+    private void validar(HttpServletRequest req) {
+        String codigoUnico = req.getParameter("codigoUnico");
+        String nombre = req.getParameter("nombre");
+        String apellido = req.getParameter("apellido");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String rol = req.getParameter("rol");
+
+        if(Validaciones.validadorCodUnico(codigoUnico)==false){
+            req.setAttribute("mensajeError", "Código Único no valido ");
+        }
+        if(Validaciones.validadorStrings(nombre)==false){
+            req.setAttribute("mensajeErrorNombre", "El nombre solo puede tener letras");
+
+        }
+        if(Validaciones.validadorStrings(apellido)==false){
+            req.setAttribute("mensajeErrorApellido", "El apellido solo puede tener letras");
+
+        }
+        if(Validaciones.validadorCorreo(email)==false){
+            req.setAttribute("mensajeErrorMail", "El correo electrónico no es valido");
+
+        }
+        if(password.length()<4){
+            req.setAttribute("mensajeErrorPass", "La contraseña debe tener al menos 4 caracteres");
+
+        }
     }
 
     private void redireccionFallo(HttpServletRequest req, HttpServletResponse resp, String codigoUnico, String nombre, String apellido, String email, String password, String rol) throws ServletException, IOException {
